@@ -1,0 +1,48 @@
+﻿@model ClimbingApp.Models.BoulderAverage
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>BoulderAverage</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PullUps)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PullUps)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PushUps)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PushUps)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HangEdge)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HangEdge)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HangWeight)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HangWeight)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RowVersion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RowVersion)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.BoulderAverageID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

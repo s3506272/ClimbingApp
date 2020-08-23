@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ClimbingApp.Models.BoulderAverage>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PullUps)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PushUps)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HangEdge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HangWeight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RowVersion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PullUps)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PushUps)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HangEdge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HangWeight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RowVersion)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.BoulderAverageID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.BoulderAverageID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.BoulderAverageID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

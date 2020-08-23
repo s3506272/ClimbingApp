@@ -1,0 +1,138 @@
+﻿@model ClimbingApp.ViewModel.StatsAverage
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>See how you compare</h2>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js" integrity="sha256-qSIshlknROr4J8GMHRlW3fGKrPki733tLq+qeMCR05Q=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.css" integrity="sha256-IvM9nJf/b5l2RoebiFno92E5ONttVyaEEsdemDC6iQA=" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js" integrity="sha256-arMsf+3JJK2LoTGqxfnuJPFTU4hAK57MtIPdFpiHXOU=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.7/chartjs-plugin-annotation.js" integrity="sha512-o2vKsxnxl66o5bM3x+Z4jvweDAM7DMShyXHQ5C8bWsm2aOJKmJl1V5JtRjoZpHJfdas3VPpzXngtikzo7u4rcw==" crossorigin="anonymous"></script>
+<div class="mb-2">
+    <select id="ChangeType">
+        <option id="Bouldering" value="B">Bouldering</option>
+        <option id="Sport" value="S">Sport</option>
+    </select>
+
+    <select id="ChangeData">
+        <option id="PullUps" value="PullUps">PullUps</option>
+        <option id="PushUps" value="PushUps">PushUps</option>
+        <option id="HangEdge" value="HangEdge">HangEdge</option>
+        <option id="HangeWeight" value="HangWeight">HangWeight</option>
+    </select>
+</div>
+
+<canvas class="my-3" id="myChart"></canvas>
+<script>
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    var JsonData = @Html.Raw(ViewBag.Json);
+
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: JsonData["Blabels"],
+        datasets: [{
+            data: JsonData["BPullUps"],
+            backgroundColor: [
+                "#57c6d1B3",
+                "#edaab4B3",
+                "#8dc99bB3",
+                "#74aff3B3",
+                "#cae5a1B3",
+                "#e6afdaB3",
+                "#a1bb7aB3",
+                "#c4b7eaB3",
+                "#bbbc81B3",
+                "#91b2e0B3",
+                "#e9e1adB3",
+                "#7ccceeB3",
+                "#e8b594B3",
+                "#88e3e9B3",
+                "#c8bd92B3",
+                "#aec8f0B3",
+                "#bde9bdB3",
+                "#87c4b8B3",
+                "#99e9d5B3",
+                "#98c3a6B3"],
+            borderColor: [
+                "#57c6d1",
+                "#edaab4",
+                "#8dc99b",
+                "#74aff3",
+                "#cae5a1",
+                "#e6afda",
+                "#a1bb7a",
+                "#c4b7ea",
+                "#bbbc81",
+                "#91b2e0",
+                "#e9e1ad",
+                "#7cccee",
+                "#e8b594",
+                "#88e3e9",
+                "#c8bd92",
+                "#aec8f0",
+                "#bde9bd",
+                "#87c4b8",
+                "#99e9d5",
+                "#98c3a6"],
+            borderWidth: 1,
+            order: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        },
+        legend: {
+            display: false
+        },
+        annotation: {
+            annotations: [{
+                type: 'line',
+                mode: 'horizontal',
+                scaleID: 'y-axis-0',
+                value: JsonData["UserStat"]["PullUp"],
+                borderColor: '#464646',
+                borderWidth: 5,
+                label: {
+                    backgroundColor: "red",
+                    content: "Your Stat",
+                    enabled: true
+                }
+            }]
+        }
+    }
+ });
+
+    // Toggle the data for the canva graph
+    function toggleData(event) {
+
+        let arg1 = document.getElementById('ChangeType');
+        var opt = arg1.options[arg1.selectedIndex];
+        let arg2 = document.getElementById('ChangeData');
+        var opt2 = arg2.options[arg2.selectedIndex];
+        var newData = opt.value + opt2.value;
+        //alert(newData);
+        myChart.data.datasets[0].data = JsonData[newData];
+        myChart.options.annotation.annotations[0].value = JsonData["UserStat"][opt2.value];
+
+        myChart.update();
+    }
+
+    document.getElementById('ChangeType').addEventListener('change', toggleData);
+    document.getElementById('ChangeData').addEventListener('change', toggleData);
+ 
+</script>
+@*<div>@ViewBag.Json</div>*@

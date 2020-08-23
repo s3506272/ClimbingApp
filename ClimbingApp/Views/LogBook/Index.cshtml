@@ -1,0 +1,92 @@
+﻿@model ClimbingApp.ViewModel.LogBookViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Your Logbook</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Boulders[0].Area)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Logs[0].Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Boulders[0].BoulderingClimbingGrade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Boulders[0].ConsensusGrade)
+            </th>
+            <th>@Html.DisplayNameFor(model => model.Logs[0].ModifyDate)</th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @foreach (var log in Model.Logs)
+        {
+
+            @if (log.Type == Models.ClimbType.Boulder)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => log.Boulder.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => log.Boulder.Area)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => log.Type)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => log.Boulder.BoulderingClimbingGrade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => log.Boulder.ConsensusGrade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => log.ModifyDate)
+                    </td>
+                </tr>
+            }
+            @if (log.Type == Models.ClimbType.Sport)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => log.Sport.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => log.Sport.Area)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => log.Type)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => log.Sport.SportClimbingGrade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => log.Sport.ConsensusGrade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => log.ModifyDate)
+                    </td>
+                </tr>
+            }
+        }
+
+
+    </tbody>
+</table>

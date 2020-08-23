@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mssql2": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroup')]/providers/Microsoft.Sql/servers/climbsqldb/databases/climbsql",
+      "type": "mssql.azure",
+      "connectionId": "ClimbAppContext",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}

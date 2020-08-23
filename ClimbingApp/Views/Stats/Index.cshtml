@@ -1,0 +1,57 @@
+﻿@model ClimbingApp.ViewModel.StatsAverage
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div id="statsbg" class="row mb-sm-5 no-gutters mb-3'">
+    <section  class="col bg-form mb-sm-0 mb-3 p-sm-5 p-3">
+        <h4>Your Stats</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-7">
+                @Html.DisplayNameFor(model => model.UserStat.PullUp)
+            </dt>
+            <dd class="col-sm-3">
+                @Html.DisplayFor(model => model.UserStat.PullUp)
+            </dd>
+            <dt class="col-sm-7">
+                @Html.DisplayNameFor(model => model.UserStat.PushUp)
+            </dt>
+            <dd class="col-sm-3">
+                @Html.DisplayFor(model => model.UserStat.PushUp)
+            </dd>
+            <dt class="col-sm-7">
+                @Html.DisplayNameFor(model => model.UserStat.HangEdge)
+            </dt>
+            <dd class="col-sm-3">
+                @Html.DisplayFor(model => model.UserStat.HangEdge)
+            </dd>
+            <dt class="col-sm-7">
+                @Html.DisplayNameFor(model => model.UserStat.HangWeight)
+            </dt>
+            <dd class="col-sm-3">
+                @Html.DisplayFor(model => model.UserStat.HangWeight)
+            </dd>
+            <dt class="col-sm-7">
+                @Html.DisplayNameFor(model => model.UserStat.HighestSportGrade)
+            </dt>
+            <dd class="col-sm-3">
+                @Html.DisplayFor(model => model.UserStat.HighestSportGrade)
+            </dd>
+            <dt class="col-sm-7">
+                @Html.DisplayNameFor(model => model.UserStat.HighestBoulderingGrade)
+            </dt>
+            <dd class="col-sm-3">
+                @Html.DisplayFor(model => model.UserStat.HighestBoulderingGrade)
+            </dd>
+        </dl>
+        <div>
+            <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.UserStat.StatID">Update</a>
+        </div>
+    </section>
+
+</div>
+
+@await Component.InvokeAsync("Compare")

@@ -1,0 +1,53 @@
+﻿@model ClimbingApp.Models.BoulderAverage
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>BoulderAverage</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="BoulderAverageID" class="control-label"></label>
+                <select asp-for="BoulderAverageID" class="form-control"></select>
+                <span asp-validation-for="BoulderAverageID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PullUps" class="control-label"></label>
+                <input asp-for="PullUps" class="form-control" />
+                <span asp-validation-for="PullUps" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PushUps" class="control-label"></label>
+                <input asp-for="PushUps" class="form-control" />
+                <span asp-validation-for="PushUps" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HangEdge" class="control-label"></label>
+                <input asp-for="HangEdge" class="form-control" />
+                <span asp-validation-for="HangEdge" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HangWeight" class="control-label"></label>
+                <input asp-for="HangWeight" class="form-control" />
+                <span asp-validation-for="HangWeight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

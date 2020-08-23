@@ -1,0 +1,54 @@
+﻿@model ClimbingApp.ViewModel.CreateLogViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Logbook</h1>
+
+<h4>Add your new log</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Log.Type" class="control-label"></label>
+                <select asp-for="Log.Type" class="form-control climbupdate" asp-items="@(Html.GetEnumSelectList<ClimbingApp.Models.ClimbType>())"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Log.Boulder.Area" class="control-label"></label>
+                <select asp-for="Log.Boulder.Area" class="form-control climbupdate" asp-items="ViewBag.Area"></select>
+                <span asp-validation-for="Log.Boulder.Area" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="climbID">Name</label>
+                <select asp-for="climbID" class="form-control"></select>
+                <span asp-validation-for="climbID" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Log.ModifyDate" class="control-label"></label>
+                <input asp-for="Log.ModifyDate" class="form-control" />
+                <span asp-validation-for="Log.ModifyDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<h4>Can't find a specific climb?</h4>
+<div>
+    <a class="nav-link text-dark" asp-controller="Boulders" asp-action="Create">Add a boulder problem</a>
+    <a class="nav-link text-dark" asp-controller="Sports" asp-action="Create">Add a sport problem</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<div class="jumbotron mb-5" id="home-img">
+    <div class="container">
+        <section id="homepage-login" class="col-sm-12 col-md-5 offset-md-7 bg-panel-b p-sm-5 p-4">
+            <!--Cagle, B. (2017)-->
+            <h1>Welcome to the Climbing App</h1>
+            <p class="my-4">You can use this App to track your climbing progress, create a logbook of your climbs, see how you compare against other climbers and get training reccomendations.</p>
+
+            @if (@ViewBag.ProfileExists == true)
+            {
+                <a class="btn btn-primary btn-lg" asp-controller="Users" asp-action="Index">Your Profile</a>
+            }
+            @if (@ViewBag.ProfileExists == null)
+            {
+                <a class="btn btn-primary btn-lg"  asp-area="AzureADB2C" asp-controller="Account" asp-action="SignIn">Sign in or create an account</a>
+            }
+
+        </section>
+    </div>
+</div>
